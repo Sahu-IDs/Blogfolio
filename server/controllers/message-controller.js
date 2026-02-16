@@ -22,14 +22,20 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-// Verify connection on startup
-transporter.verify(function (error, success) {
-    if (error) {
-        console.log('❌ Nodemailer Verification Error:', error);
-    } else {
+// Verify connection on startup (non-blocking with timeout)
+const verifyEmail = async () => {
+    try {
+        await Promise.race([
+            transporter.verify(),
+            new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 5000))
+        ]);
         console.log('✅ Nodemailer is ready to send emails');
+    } catch (error) {
+        console.log('⚠️ Nodemailer verification failed (non-critical):', error.message);
+        console.log('📧 Email service will be attempted on demand');
     }
-});
+};
+verifyEmail();
 
 export const newMessage = async (request, response) => {
     try {
