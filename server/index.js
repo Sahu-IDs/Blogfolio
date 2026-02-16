@@ -67,7 +67,7 @@ app.use((req, res, next) => {
 
 app.use('/', Router);
 app.use('/api/blog', blogRouter); // Blog Routes (Clean MVC Structure)
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 const URL = process.env.ATLASDB_URL;
 
 Connection(URL);
