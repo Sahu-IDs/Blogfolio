@@ -22,7 +22,12 @@ dotenv.config({ path: path.join(__dirname, '.env') });
 
 // --- SECURITY MIDDLEWARE ---
 app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:3000'],
+    origin: [
+        'http://localhost:5173',
+        'http://localhost:5174',
+        'http://localhost:3000',
+        'https://blogfolio-app.onrender.com'
+    ],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'Accept', 'X-Requested-With'],
