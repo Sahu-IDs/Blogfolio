@@ -3,6 +3,7 @@ import { Grid, Card, CardContent, Typography, Button, CardMedia, Box, Chip, Cont
 import { styled, alpha, keyframes } from '@mui/material/styles';
 import { Phone, Email, Send, LinkedIn, GitHub, School, Work, Code, EmojiEvents, Delete, Language, OpenInNew, Bolt, TrendingFlat } from '@mui/icons-material';
 import { API } from '../../service/api';
+import { fixImageUrl } from '../../utils/common-utils';
 
 // --- ELITE ANIMATIONS ---
 const shine = keyframes`
@@ -239,7 +240,7 @@ export const HeroSection = ({ personalInfo, handleDelete, isAuth, isOwnerPortfol
                                 animation: `${rotate} 20s linear infinite reverse`
                             }} />
                             <Avatar
-                                src={personalInfo.picture}
+                                src={fixImageUrl(personalInfo.picture)}
                                 sx={{
                                     width: { xs: 280, md: 400 },
                                     height: { xs: 280, md: 400 },
@@ -354,7 +355,7 @@ export const SkillsSection = ({ skills, handleDelete, isAuth }) => (
                         animationDelay: `${index * 0.1}s`
                     }}>
                         <Box sx={{ width: 80, height: 80, mb: 3, transition: '0.4s', '&:hover': { transform: 'scale(1.1) rotate(5deg)' } }}>
-                            <img src={item.picture || getIconUrl(item.title)} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                            <img src={fixImageUrl(item.picture) || getIconUrl(item.title)} alt={item.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                         </Box>
                         <Typography variant="h6" fontWeight="900" sx={{ color: 'white' }}>{item.title}</Typography>
                         {isAuth && <EliteDeleteButton className="delete-btn" onClick={() => handleDelete(item._id)}><Delete /></EliteDeleteButton>}
@@ -413,7 +414,7 @@ export const ProjectsSection = ({ projects, handleDelete, isAuth }) => (
                         animationDelay: `${index * 0.2}s`
                     }}>
                         <Box sx={{ height: 260, overflow: 'hidden', position: 'relative' }}>
-                            <CardMedia component={item.mediaType === 'Video' ? 'video' : 'img'} src={item.picture} image={item.picture} autoPlay muted loop sx={{ height: '100%', objectFit: 'cover', transition: '0.8s' }} className="media-zoom" />
+                            <CardMedia component={item.mediaType === 'Video' ? 'video' : 'img'} src={fixImageUrl(item.picture)} image={fixImageUrl(item.picture)} autoPlay muted loop sx={{ height: '100%', objectFit: 'cover', transition: '0.8s' }} className="media-zoom" />
                             <Box sx={{ position: 'absolute', top: 20, right: 20 }}>
                                 <Chip label={item.techStack?.split(',')[0]} sx={{ bgcolor: 'rgba(5, 7, 10, 0.8)', color: 'white', fontWeight: 900, backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.1)' }} />
                             </Box>
@@ -483,7 +484,7 @@ export const CertificatesSection = ({ certificates, handleDelete, isAuth }) => (
                         <EmojiEvents sx={{ fontSize: 50, color: '#fbbf24', mb: 3 }} />
                         <Typography variant="h5" fontWeight="950" sx={{ color: 'white', mb: 1 }}>{item.title}</Typography>
                         <Typography variant="subtitle2" sx={{ color: '#6366f1', fontWeight: 800, mb: 3 }}>{item.liveLink}</Typography>
-                        <Button variant="contained" href={item.picture} target="_blank" sx={{ bgcolor: 'rgba(255,255,255,0.03)', color: 'white', borderRadius: '15px', fontWeight: 900, textTransform: 'none', border: '1px solid rgba(255,255,255,0.08)', '&:hover': { bgcolor: '#6366f1' } }}>View Credentials</Button>
+                        <Button variant="contained" href={fixImageUrl(item.picture)} target="_blank" sx={{ bgcolor: 'rgba(255,255,255,0.03)', color: 'white', borderRadius: '15px', fontWeight: 900, textTransform: 'none', border: '1px solid rgba(255,255,255,0.08)', '&:hover': { bgcolor: '#6366f1' } }}>View Credentials</Button>
                         {isAuth && <EliteDeleteButton className="delete-btn" onClick={() => handleDelete(item._id)}><Delete /></EliteDeleteButton>}
                     </EliteStyledCard>
                 </Grid>

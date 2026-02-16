@@ -1,5 +1,5 @@
 import { Box, Typography, styled, Chip, Stack } from '@mui/material';
-import { addElipsis } from '../../../utils/common-utils';
+import { addElipsis, fixImageUrl } from '../../../utils/common-utils';
 import PersonIcon from '@mui/icons-material/Person';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -127,7 +127,7 @@ const ReadMoreAction = styled(Box)({
 });
 
 const Post = ({ post }) => {
-    const url = post.picture || 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2070';
+    const url = fixImageUrl(post.picture) || 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2070';
 
     // Detect if it's a video
     const isVideo = post.mediaType === 'Video' ||

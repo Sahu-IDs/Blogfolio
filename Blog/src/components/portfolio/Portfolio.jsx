@@ -10,7 +10,8 @@ import { API } from '../../service/api';
 import { DataContext } from '../../DataProvider';
 import { HeroSection, SkillsSection, ExperienceSection, ProjectsSection, EducationSection, CertificatesSection, ContactSection } from './PortfolioSections';
 import PortfolioNavigation from './PortfolioNavigation';
-import theme from './theme';
+import { Action } from '../../utils/common-utils'; // This line might not exist, checking context
+import { fixImageUrl } from '../../utils/common-utils';
 
 // --- HOME PAGE STYLES ADAPTED ---
 const EliteSection = styled(Box)(({ theme }) => ({
@@ -331,8 +332,8 @@ const Portfolio = () => {
     firstPortfolio?.title ||
     'User';
 
-  const userPhoto = firstPortfolio?.userInfo?.picture ||
-    firstPortfolio?.picture ||
+  const userPhoto = fixImageUrl(firstPortfolio?.userInfo?.picture) ||
+    fixImageUrl(firstPortfolio?.picture) ||
     'https://via.placeholder.com/400?text=No+Photo';
 
   // Create personal info object from actual data
