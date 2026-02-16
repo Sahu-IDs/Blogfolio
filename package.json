@@ -1,0 +1,27 @@
+{
+    "name": "blogfolio-fullstack",
+    "version": "1.0.0",
+    "description": "BlogFolio - Full Stack MERN Application (Blog + Portfolio Platform)",
+    "main": "index.js",
+    "scripts": {
+        "dev": "concurrently \"npm run server\" \"npm run client\"",
+        "server": "cd server && npm start",
+        "client": "cd Blog && npm run dev",
+        "install-all": "npm install && cd server && npm install && cd ../Blog && npm install",
+        "build": "cd Blog && npm run build"
+    },
+    "keywords": [
+        "mern",
+        "blog",
+        "portfolio",
+        "react",
+        "nodejs",
+        "mongodb",
+        "express"
+    ],
+    "author": "Sandeep",
+    "license": "MIT",
+    "devDependencies": {
+        "concurrently": "^8.2.2"
+    }
+}

@@ -1,0 +1,57 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment Variables (CRITICAL - NEVER COMMIT)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+server/.env
+Blog/.env
+
+# Build outputs
+dist/
+build/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Uploads (User-generated content)
+server/uploads/
+Blog/public/uploads/
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Deployment & Documentation (Hide from public)
+PRESENTATION_GUIDE.md
+PROJECT_SUMMARY.md
+SETUP_GUIDE.md
+start.bat
+
+# Sensitive Scripts
+server/scripts/delete-*.js
+server/scripts/test-*.js
+
+# Database backups
+*.sql
+*.dump
+*.backup
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
