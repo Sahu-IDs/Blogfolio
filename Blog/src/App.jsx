@@ -7,7 +7,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Login from './components/account/Login'
 import Home from './components/home/Home';
 import Header from './components/header/Header';
-import Portfolio from './components/portfolio/portfolio';
+import Portfolio from './components/portfolio/Portfolio';
 import CreatePost from './components/create/CreatePost';
 import About from './components/about/About';
 import Contact from './components/contact/Contact';
