@@ -115,6 +115,23 @@ const PortfolioNavigation = ({ userName, isAuth }) => {
 
   return (
     <>
+      {/* 🚀 Mobile Menu Button (Visible on Mobile Only) */}
+      <Box sx={{ position: 'fixed', top: 20, right: 20, zIndex: 1301, display: { md: 'none' } }}>
+        <IconButton
+          onClick={handleDrawerToggle}
+          sx={{
+            bgcolor: 'rgba(15, 23, 42, 0.8)',
+            backdropFilter: 'blur(20px)',
+            border: '1px solid rgba(255,255,255,0.1)',
+            color: 'white',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
+            '&:hover': { bgcolor: '#6366f1' }
+          }}
+        >
+          <MenuIcon />
+        </IconButton>
+      </Box>
+
       {/* 🚀 Elite Floating Side Dock (Desktop) */}
       <Box
         sx={{

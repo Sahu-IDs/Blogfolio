@@ -10,7 +10,7 @@ import { API } from '../../service/api';
 import { DataContext } from '../../DataProvider';
 import { HeroSection, SkillsSection, ExperienceSection, ProjectsSection, EducationSection, CertificatesSection, ContactSection } from './PortfolioSections';
 import PortfolioNavigation from './PortfolioNavigation';
-import { Action } from '../../utils/common-utils'; // This line might not exist, checking context
+import theme from './theme';
 import { fixImageUrl } from '../../utils/common-utils';
 
 // --- HOME PAGE STYLES ADAPTED ---
