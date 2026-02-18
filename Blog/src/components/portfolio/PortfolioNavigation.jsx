@@ -65,13 +65,18 @@ const PortfolioNavigation = ({ userName, isAuth }) => {
 
     setSending(true);
     try {
-      const response = await API.newMessage({
-        ...contactForm,
-        receiverId: 'site-owner',
-        ownerEmail: 'sandeepsahu12176@gmail.com'
+      const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+      const res = await fetch(`${API_BASE}/message/new`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...contactForm,
+          receiverId: 'site-owner',
+          ownerEmail: 'sandeepsahu12176@gmail.com'
+        })
       });
 
-      if (response.isSuccess) {
+      if (res.ok) {
         alert("Message sent successfully to site owner!");
         handleContactDialogClose();
       } else {

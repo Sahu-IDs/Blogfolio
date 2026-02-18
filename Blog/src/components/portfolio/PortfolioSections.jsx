@@ -504,20 +504,24 @@ export const ContactSection = ({ contactInfo, handleDelete, isAuth, userId }) =>
         setSending(true);
         try {
             const receiverId = userId || contactInfo?.userId || contactInfo?._id;
-            // Force fallback if no email found
             const ownerEmail = contactInfo?.email || contactInfo?.contact || 'vaibhav12679@gmail.com';
+            const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
-            console.log('📧 Sending message to:', ownerEmail);
+            console.log('📧 Sending message to:', ownerEmail, 'via', API_BASE);
 
-            const response = await API.newMessage({
-                ...msg,
-                receiverId,
-                ownerEmail
+            const res = await fetch(`${API_BASE}/message/new`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ ...msg, receiverId, ownerEmail })
             });
 
-            if (response.isSuccess) {
+            const data = await res.json();
+
+            if (res.ok) {
                 alert("Message Sent Successfully! I will get back to you soon.");
                 setMsg({ senderName: '', senderEmail: '', message: '' });
+            } else {
+                alert("Failed to send message. Please try again.");
             }
         } catch (error) {
             console.error(error);
