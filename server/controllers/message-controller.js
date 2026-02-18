@@ -100,16 +100,17 @@ export const newMessage = async (request, response) => {
             `
         };
 
-        // Send email with detailed error handling
-        try {
-            const info = await transporter.sendMail(mailOptions);
-            console.log('✅ EMAIL SENT SUCCESSFULLY!');
-            console.log('📝 Message ID:', info.messageId);
-        } catch (emailError) {
-            console.error('❌ EMAIL SENDING FAILED:', emailError);
-            console.error('❌ Error Message:', emailError.message);
-        }
+        // Send email in BACKGROUND (non-blocking) - don't make user wait
+        transporter.sendMail(mailOptions)
+            .then(info => {
+                console.log('✅ EMAIL SENT SUCCESSFULLY!');
+                console.log('📝 Message ID:', info.messageId);
+            })
+            .catch(emailError => {
+                console.error('❌ EMAIL SENDING FAILED:', emailError.message);
+            });
 
+        // Return success immediately after DB save (don't wait for email)
         return response.status(200).json({
             msg: 'Message sent successfully',
             isSuccess: true
