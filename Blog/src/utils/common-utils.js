@@ -26,7 +26,8 @@ export const getType = (value, body) => {
 // Helper to fix image URLs (localhost -> production)
 export const fixImageUrl = (url) => {
     if (!url) return '';
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+    // Always use production URL if available, fallback to localhost for dev
+    const API_URL = import.meta.env.VITE_API_URL || 'https://blogfolio-api-vghh.onrender.com';
     if (url.includes('localhost:8000')) {
         return url.replace('http://localhost:8000', API_URL);
     }
