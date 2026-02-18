@@ -192,14 +192,19 @@ const Contact = () => {
     }
     setLoading(true);
     try {
-      const response = await API.newMessage({
-        senderName: formData.name,
-        senderEmail: formData.email,
-        message: formData.message,
-        receiverId: "GLOBAL_ELITE_CONTACT",
-        ownerEmail: "vaibhav12679@gmail.com"
+      const API_BASE = import.meta.env.VITE_API_URL || 'https://blogfolio-api-vghh.onrender.com';
+      const res = await fetch(`${API_BASE}/message/new`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          senderName: formData.name,
+          senderEmail: formData.email,
+          message: formData.message,
+          receiverId: "GLOBAL_ELITE_CONTACT",
+          ownerEmail: "vaibhav12679@gmail.com"
+        })
       });
-      if (response.isSuccess) {
+      if (res.ok) {
         setStatus({ open: true, type: 'success', text: 'Transmission Successful! Request Received.' });
         setFormData({ name: '', email: '', message: '' });
       } else {
