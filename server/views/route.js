@@ -48,9 +48,9 @@ router.post('/file/upload', authenticateToken, upload.single('file'), uploadImag
 router.get('/file/:filename', getImage);
 
 // --- COMMENT ROUTES ---
-// Authenticated Users (any role) can comment
+// Anyone can READ comments (public), but must be logged in to POST or DELETE
 router.post('/comment/new', authenticateToken, newComment);
-router.get('/comments/:id', authenticateToken, getComments);
+router.get('/comments/:id', getComments);               // Public - no auth needed
 router.delete('/comment/delete/:id', authenticateToken, deleteComment);
 
 // --- PORTFOLIO ROUTES (Core Project Feature) ---
